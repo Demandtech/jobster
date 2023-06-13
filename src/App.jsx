@@ -7,9 +7,8 @@ import {
   AllJobs,
   Stats,
   AddJobs,
-  SharedLayout,
-  
-} from './pages/Dashboard'
+  SharedLayout, 
+} from './pages/dashboard'
 
 function App() {
   return (
