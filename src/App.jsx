@@ -6,7 +6,7 @@ import {
   Profile,
   AllJobs,
   Stats,
-  AddJobs,
+  AddJob,
   SharedLayout, 
 } from './pages/dashboard'
 
@@ -23,7 +23,7 @@ function App() {
           }
         >
           <Route index element={<Stats />} />
-          <Route path='/add-job' element={<AddJobs />} />
+          <Route path='/add-job' element={<AddJob />} />
           <Route path='/all-jobs' element={<AllJobs />} />
           <Route path='/profile' element={<Profile />} />
           <Route />
