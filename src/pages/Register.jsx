@@ -52,6 +52,7 @@ const Register = () => {
         navigate('/')
       }, 3000)
     }
+    // eslint-disable-next-line
   }, [user])
 
   return (
@@ -84,6 +85,18 @@ const Register = () => {
         />
         <button disabled={isLoading} type='submit' className='btn btn-block'>
           submit
+        </button>
+        <button
+          disabled={isLoading}
+          type='button'
+          className='btn btn-block btn-hipster'
+          onClick={() =>
+            dispatch(
+              loginUser({ email: 'testUser@test.com', password: 'secret' })
+            )
+          }
+        >
+          Demo <sub style={{ color: 'white' }}>read only</sub>
         </button>
         <p>
           {values.isMember ? 'Not a member yet?' : 'already a member?'}
