@@ -10,7 +10,12 @@ const Stats = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(showStats())
+    // eslint-disable-next-line
   }, [])
+
+  if (isLoading) {
+    return <Loading  center/>
+  }
 
   return (
     <>
