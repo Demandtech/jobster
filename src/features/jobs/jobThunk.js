@@ -1,8 +1,6 @@
-import customFetch from '../../utils/axios'
+import customFetch, { checkForUnaurizedResponse } from '../../utils/axios'
 import { showLoading, hideLoading, getAllJobs } from '../alljobs/allJobsSlice'
 import { clearValue } from './jobSlice'
-import { logoutUser } from '../user/userSlice'
-
 
 export const createJobThunk = async (job, thunkAPI) => {
   try {
@@ -10,11 +8,7 @@ export const createJobThunk = async (job, thunkAPI) => {
     thunkAPI.dispatch(clearValue())
     return resp.data.msg
   } catch (error) {
-    if (error.response.status === 401) {
-      thunkAPI.dispatch(logoutUser())
-      return thunkAPI.rejectWithValue('Unauthorized! Logging out...')
-    }
-    return thunkAPI.rejectWithValue(error.response.data.msg)
+    return checkForUnaurizedResponse(error, thunkAPI)
   }
 }
 export const deleteJobThunk = async (jobId, thunkAPI) => {
@@ -25,7 +19,7 @@ export const deleteJobThunk = async (jobId, thunkAPI) => {
     return resp.data.msg
   } catch (error) {
     thunkAPI.dispatch(hideLoading())
-    return thunkAPI.rejectWithValue(error.response.data.msg)
+    return checkForUnaurizedResponse(error, thunkAPI)
   }
 }
 export const editJobThunk = async ({ jobId, job }, thunkAPI) => {
@@ -34,6 +28,6 @@ export const editJobThunk = async ({ jobId, job }, thunkAPI) => {
     thunkAPI.dispatch(clearValue())
     return resp.data.msg
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.response.data.msg)
+   return checkForUnaurizedResponse(error, thunkAPI)
   }
 }
